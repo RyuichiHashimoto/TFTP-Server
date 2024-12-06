@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  tftp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tftp_server
+    ports:
+      - "69:69/udp" # TFTP uses UDP port 69
+    volumes:
+      - ./tftp_root:/var/tftpboot # TFTP root directory
+    restart: unless-stopped
